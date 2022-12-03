@@ -1,0 +1,42 @@
+<section class="filter">
+  <div class="filter__settings filter__container">
+    <mat-form-field appearance="fill">
+      <mat-label>Choose breed</mat-label>
+      <mat-select [formControl]="breedTarget">
+        <mat-option *ngFor="let item of breedsSelect" [value]="item.value">
+          {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Choose Category</mat-label>
+      <mat-select [formControl]="categoryTarget">
+        <mat-option *ngFor="let item of categorySelect" [value]="item.value">
+          {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Choose amount</mat-label>
+      <mat-select [formControl]="amountTarget">
+        <mat-option *ngFor="let item of amountSelect" [value]="item.value">
+          {{item.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <button mat-raised-button (click)="submit()" color="primary">Primary</button>
+  </div>
+
+  <div class="filter__container filter__results">
+    <div *ngIf="loading" class="popUp">
+      <mat-spinner ></mat-spinner>
+    </div>
+    <app-card *ngFor="let item of data$ | async" [data]="item"></app-card>
+  </div>
+</section>
+
+
